@@ -1,20 +1,74 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="images/store_726569.png">
-    <link rel="stylesheet" href="style.css">
-    <title> GameVault</title>
-</head>
-<body>
-    <header>
-        <h1>Explorez une nouvelle façon d’acheter vos jeux</h1>
-        <nav>
-            <ul><li>Home</li>
-            <li>Panier</li>
-            <li>Profile</li></ul>
-        </nav>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="images/store_726569.png" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <title>GameVault</title>
+    <script src="./script.js" type="module"></script>
+  </head>
+  <body class="bg-[#4949ff]">
+    <header
+      class="flex items-center p-10 justify-between bg-[#] font-bold text-white"
+    >
+      <h1 class="text-2xl">Explorez une nouvelle façon d’acheter vos jeux</h1>
+      <nav>
+        <ul class="flex gap-35 list-none hover:cursor-pointer">
+          <li
+            class="hover:bg-white p-4 hover:rounded-full hover:text-[#4949ff]"
+          >
+            Home
+          </li>
+          <li
+            class="hover:bg-white p-4 hover:rounded-full hover:text-[#4949ff]"
+          >
+            Panier
+          </li>
+          <li
+            class="hover:bg-white p-4 hover:text-[#4949ff] hover:rounded-full"
+          >
+            Profile
+          </li>
+        </ul>
+      </nav>
     </header>
-</body>
+    <main>
+      <div id="container-input" class="relative items-center flex justify-center">
+       <img src="/images/search.png" class="absolute w-10 h-10 left-120">
+        <input class=" w-100  rounded-full bg-white p-4" type="search" placeholder="Explorer les jeux" />
+      </div>
+      <section id="galery-card">
+        <!-- <div id="card"> -->
+        <!-- 
+<div id="img-card"></div>
+<div id="info-card">
+
+        <div id="">
+            <h1 id="title"></h1>
+            <img id="AddPanier" src="" alt="Ajouter au Panier"><img id="supprimerCard" src="" alt="Supprimer la carte">
+        </div>
+
+
+
+
+        <div>
+            <p id="price"></p>
+            <p id="category"></p>
+
+        </div>
+</div> -->
+
+        <!-- </div> -->
+      </section>
+    </main>
+    <footer>
+      <img src="" alt="" class="imageFooter" /><img
+        src=""
+        alt=""
+        class="imageFooter"
+      /><img src="" alt="" class="imageFooter" />
+    </footer>
+  </body>
 </html>
