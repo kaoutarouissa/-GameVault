@@ -1,4 +1,31 @@
-body{
-    background-color:#4949FF;
-    
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  background-color: #4949ff;
+}
+
+header {
+  padding: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: beige;
+  font-weight: bold;
+}
+nav ul {
+  display: flex;
+  gap: 80px;
+  list-style: none;
+}
+nav ul li:hover {
+  background-color: white;
+  color: #4949ff;
+  border-radius: 20px;
+  cursor: pointer;
+}
+nav li {
+  padding: 10px;
 }
