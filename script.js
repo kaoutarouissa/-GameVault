@@ -14,7 +14,7 @@ let galery=document.getElementById('galery-card')
 
 for (let i=0;i<games.length;i++){
     galery.innerHTML += `
-    <div class=" relative  rounded-2xl shadow w-64 h-96 ">
+    <div class=" relative  rounded-2xl shadow w-64 h-96  mb-2 ">
     <div class="">
     <img src="${games[i].image}" class="w-full h-80 object-cover rounded-t-3xl bg-black">
     </div>
