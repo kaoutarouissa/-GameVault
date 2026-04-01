@@ -5,70 +5,105 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/x-icon" href="images/store_726569.png" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <title>GameVault</title>
     <script src="./script.js" type="module"></script>
   </head>
-  <body class="bg-[#4949ff]">
-    <header
-      class="flex items-center p-10 justify-between bg-[#] font-bold text-white"
-    >
-      <h1 class="text-2xl">Explorez une nouvelle façon d’acheter vos jeux</h1>
-      <nav>
-        <ul class="flex gap-35 list-none hover:cursor-pointer">
+  <body class="md:bg-[#4949ff]">
+    <header class="items-center p-10 justify-between font-bold md:flex">
+      <h1 class="text-2xl text-center text-[#4949ff] md:text-white">
+        Explorez une nouvelle façon d’acheter vos jeux
+      </h1>
+      <nav class="hidden md:block md:text-white">
+        <ul
+          class="md:flex md:justify-between list-none hover:cursor-pointer md:gap-10"
+        >
           <li
-            class="hover:bg-white p-4 hover:rounded-full hover:text-[#4949ff]"
+            class="md:hover:bg-white p-4 md:hover:rounded-full md:hover:text-[#4949ff]"
           >
             Home
           </li>
           <li
-            class="hover:bg-white p-4 hover:rounded-full hover:text-[#4949ff]"
+            class="md:hover:bg-white p-4 md:hover:rounded-full md:hover:text-[#4949ff]"
           >
             Panier
           </li>
           <li
-            class="hover:bg-white p-4 hover:text-[#4949ff] hover:rounded-full"
+            class="md:hover:bg-white p-4 md:hover:text-[#4949ff] md:hover:rounded-full"
           >
             Profile
           </li>
         </ul>
       </nav>
     </header>
-    <main>
-      <div id="container-input" class="relative items-center flex justify-center">
-       <img src="/images/search.png" class="absolute w-10 h-10 left-120">
-        <input class=" w-100  rounded-full bg-white p-4" type="search" placeholder="Explorer les jeux" />
+    <main class="md:flex md:justify-center md:items-center md:flex-col">
+      <div
+        id="container-input"
+        class="flex items-center justify-center m-6 bg-[#EFE4E4] rounded-full border md:pl-4 md:w-150 md:bg-white"
+      >
+        <img src="/images/search.png" class="w-5 h-5" />
+        <input
+          class="focus:outline-none rounded-full p-4"
+          type="search"
+          placeholder="Explorer les jeux"
+        />
       </div>
-      <section id="galery-card">
-        <!-- <div id="card"> -->
-        <!-- 
-<div id="img-card"></div>
-<div id="info-card">
+      <div
+        id="btnCategory"
+        class="md:flex md:gap-10 flex items-center justify-center gap-2 font-bold"
+      >
+        <button
+          class="inline-flex items-center justify-center h-12 gap-2 px-6 text-sm font-medium text-white rounded-full bg-[#4949ff] md:bg-white md:text-[#4949ff] md:font-medium"
+        >
+          RPG
+        </button>
+        <button
+          class="inline-flex items-center justify-center h-12 gap-2 px-6 text-sm font-medium text-white rounded-full bg-[#4949ff] md:bg-white md:text-[#4949ff] md:font-medium"
+        >
+          Sport
+        </button>
+        <button
+          class="inline-flex items-center justify-center h-12 gap-2 px-6 text-sm font-medium text-white rounded-full bg-[#4949ff] md:bg-white md:text-[#4949ff] md:font-medium"
+        >
+          Action
+        </button>
+        <button
+          class="inline-flex items-center justify-center h-12 gap-2 px-6 text-sm font-medium text-white rounded-full bg-[#4949ff] md:bg-white md:text-[#4949ff] md:font-medium"
+        >
+          FPS
+        </button>
+      </div>
 
-        <div id="">
+      <div
+        id="galery-card"
+        class="mt-6 grid grid-cols-1 gap-10 justify-items-center mb-20 "
+      >
+        <!-- <div id="card">
+              <div id="img-card">uihiio</div>
+
+              <div id="info-card">
+                
+                <div id="">
             <h1 id="title"></h1>
             <img id="AddPanier" src="" alt="Ajouter au Panier"><img id="supprimerCard" src="" alt="Supprimer la carte">
         </div>
 
-
-
-
+        
+        
+        
         <div>
-            <p id="price"></p>
-            <p id="category"></p>
-
+          <p id="price"></p>
+          <p id="category"></p>
+          
         </div>
-</div> -->
-
-        <!-- </div> -->
-      </section>
+      </div> 
+      
+    </div> -->
+      </div>
     </main>
-    <footer>
-      <img src="" alt="" class="imageFooter" /><img
-        src=""
-        alt=""
-        class="imageFooter"
-      /><img src="" alt="" class="imageFooter" />
-    </footer>
+    <footer class="bg-[#4949ff] flex justify-between p-6 rounded-t-2xl fixed bottom-0 right-0 left-0">
+<i class="fa-solid fa-house fa-2x hover:cursor-pointer" style="color: rgb(255, 255, 255);"></i>
+<i class="fa-solid fa-basket-shopping fa-2x hover:cursor-pointer" style="color: rgb(255, 255, 255);"></i>  
+<i class="fa-solid fa-user fa-2x hover:cursor-pointer" style="color: rgb(255, 255, 255);"></i> 
   </body>
 </html>
