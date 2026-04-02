@@ -18,12 +18,12 @@
         <ul
           class="md:flex md:justify-between list-none hover:cursor-pointer md:gap-10"
         >
-          <li
+          <li id="home"
             class="md:hover:bg-white p-4 md:hover:rounded-full md:hover:text-[#4949ff]"
           >
             Home
           </li>
-          <li
+          <li id="panier"
             class="md:hover:bg-white p-4 md:hover:rounded-full md:hover:text-[#4949ff]"
           >
             Panier
@@ -36,7 +36,7 @@
         </ul>
       </nav>
     </header>
-    <main class="md:flex md:justify-center md:items-center md:flex-col">
+    <main id="main" class="flex-col p-4 md:flex md:justify-center md:items-center md:flex-col items-center justify-center">
       <div
         id="container-input"
         class="flex items-center justify-center m-6 bg-[#EFE4E4] rounded-full border md:pl-4 md:w-150 md:bg-white"
@@ -46,7 +46,7 @@
       </div>
       <div
         id="btnCategory"
-        class="md:flex md:gap-10 flex items-center justify-center gap-2 font-bold"
+        class=" overflow-x-scroll md:flex md:gap-10 flex gap-6 font-bold md:overflow-hidden"
       >
        <button id="all"
           class="  md:cursor-pointer inline-flex items-center justify-center h-12 gap-2 px-6 text-sm font-medium text-white rounded-full bg-[#4949ff] md:bg-white md:text-[#4949ff] md:font-medium"
@@ -75,10 +75,16 @@
         </button>
       </div>
 
-      <div id="galery-card" class="mt-6 grid grid-cols-1 gap-10 justify-items-center mb-20 md:grid md:grid-cols-4">
+      <div id="galery-card" class="mt-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-items-center mb-20">
   </div>
-
-    </main>
+  
+</main>
+<div id="panierContainer" class="">
+  <div id="infocard">
+    <img src="" alt="" id="imagePanier">
+    <h1 id="titlePanier" class="text-white">hcdihuiez</h1>
+  </div>
+</div>
     <footer class="md:hidden bg-[#4949ff] flex justify-between p-6 rounded-t-2xl fixed bottom-0 right-0 left-0">
 <i class="fa-solid fa-house fa-2x hover:cursor-pointer" style="color: rgb(255, 255, 255);"></i>
 <i class="fa-solid fa-basket-shopping fa-2x hover:cursor-pointer" style="color: rgb(255, 255, 255);"></i>  
