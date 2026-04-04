@@ -81,23 +81,40 @@ function panier() {
          </div>
          <div class="flex flex-col gap-2 mt-4 md:mt-0">
            <div class="flex gap-2 md:gap-4 items-center">
-             <button class="cursor-pointer h-10 w-10 rounded-full bg-[#4949ff] text-white flex items-center justify-center">+</button>
-             <span class="font-bold px-2">2</span>
-             <button class="cursor-pointer h-10 w-10 rounded-full bg-[#4949ff] text-white flex items-center justify-center">-</button>
+             <button id="add" class="add cursor-pointer h-10 w-10 rounded-full bg-[#4949ff] text-white flex items-center justify-center">+</button>
+             <span id="quantity" class="font-bold px-2">2</span>
+             <button id="subtract" class="subtract cursor-pointer h-10 w-10 rounded-full bg-[#4949ff] text-white flex items-center justify-center">-</button>
            </div>
            <div class="flex justify-between items-center mt-2">
              <p class="font-bold">Total: <span class="text-green-400">$</span></p>
              <img class="w-10 h-10 cursor-pointer" src="./images/delete.png" alt="delete">
            </div>
          </div>
-         <div class="flex justify-center mt-4">
-           <button class="cursor-pointer bg-[#4949ff] text-white font-bold px-4 py-2 rounded-full">
-             Valider la commande
-           </button>
-         </div>
+        
        </div>
-     </div>`,
+       
+     </div >
+     `,
   );
+  let add=document.querySelectorAll(".add")
+  let quantityElement=document.querySelectorAll("#quantity")
+  let subtract=document.querySelectorAll(".subtract")
+for (let i = 0; i < add.length; i++) {
+  add[i].onclick = function() {
+    let current = parseInt(quantityElement[i].textContent);
+    quantityElement[i].textContent = current + 1;
+  };
+}
+
+for (let i = 0; i < subtract.length; i++) {
+  subtract[i].onclick = function() {
+    let current = parseInt(quantityElement[i].textContent);
+    if (current > 1) {
+      quantityElement[i].textContent = current - 1;
+    }
+  };
+}
+  panierContainer.insertAdjacentHTML('beforeend', '  <div id="panierContainer" class="md:mt-40 md:m-[50px] mb-[10px] pb-24 border-black"><div class="flex justify-center mt-4"><button class="cursor-pointer bg-[#4949ff] text-yellow-400 font-bold px-4 py-2 rounded-full">Valider la commande</button></div></div>');
   
 
 }
@@ -141,9 +158,12 @@ function search(value) {
   }
 }
 
+
 inputSearch.onkeyup = function () {
   search(inputSearch.value);
 };
+
+// let add = document.getElementById("add");
 
 RPG.onclick = function () {
   RPGcategory();
