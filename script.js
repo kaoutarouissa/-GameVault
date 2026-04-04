@@ -87,7 +87,7 @@ function panier() {
            </div>
            <div class="flex justify-between items-center mt-2">
              <p class="font-bold">Total: <span class="text-green-400">$</span></p>
-             <img class="w-10 h-10 cursor-pointer" src="./images/delete.png" alt="delete">
+             <img class="delete w-10 h-10 cursor-pointer" src="./images/delete.png" alt="delete">
            </div>
          </div>
         
@@ -99,6 +99,16 @@ function panier() {
   let add=document.querySelectorAll(".add")
   let quantityElement=document.querySelectorAll("#quantity")
   let subtract=document.querySelectorAll(".subtract")
+  let deleteBtn=document.querySelectorAll(".delete")
+  for (let i = 0; i < deleteBtn.length; i++) {
+    deleteBtn[i].onclick = function() {
+      let games = JSON.parse(localStorage.getItem("games")) || [];
+      games.splice(i, 1);
+      localStorage.setItem("games", JSON.stringify(games));
+      panier();
+    };
+    
+    }
 for (let i = 0; i < add.length; i++) {
   add[i].onclick = function() {
     let current = parseInt(quantityElement[i].textContent);
@@ -114,11 +124,33 @@ for (let i = 0; i < subtract.length; i++) {
     }
   };
 }
-  panierContainer.insertAdjacentHTML('beforeend', '  <div id="panierContainer" class="md:mt-40 md:m-[50px] mb-[10px] pb-24 border-black"><div class="flex justify-center mt-4"><button class="cursor-pointer bg-[#4949ff] text-yellow-400 font-bold px-4 py-2 rounded-full">Valider la commande</button></div></div>');
+  panierContainer.insertAdjacentHTML('beforeend', '  <div id="panierContainer" class="md:mt-40 md:m-[50px] mb-[10px] pb-24 border-black"><div class="flex justify-center mt-4"><div><p>Total: <span class="text-green-400" id="totalAmount">$0</span></p><button id="validateOrder" class="cursor-pointer bg-[#4949ff] text-yellow-400 font-bold px-4 py-2 rounded-full">Valider la commande</button></div></div>');
+  let totalAmountElement = document.getElementById("totalAmount");
+  let validateOrderButton = document.getElementById("validateOrder");
+  validateOrderButton.onclick = function() {
+    // alert("Commande validée !");
+    localStorage.removeItem("games");
+    panier();
+  }
   
+  function calculateTotal() {
+    let somme = 0;
+    let games = JSON.parse(localStorage.getItem("games")) || [];
+
+    for (let i = 0; i < games.length; i++) {
+          for(let i=0;quantityElement.length;i++){
+            let quantity = parseInt(quantityElement[i].textContent);
+            somme += games[i].price * quantity;
+          }
 
 }
-
+}
+calculateTotal();
+function updateTotal() {
+  let total = calculateTotal();
+  totalAmountElement.textContent = `$${total}`; 
+}
+updateTotal();}
 displayGame();
 
 function NOTfound() {
