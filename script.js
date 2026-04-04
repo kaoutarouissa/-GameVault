@@ -2,6 +2,7 @@ import { games } from "./data.js";
 let galery = document.getElementById("galery-card");
 let inputSearch = document.getElementById("search");
 let all = document.getElementById("all");
+let RPG = document.getElementById("RPG");
 let sport = document.getElementById("sport");
 let action = document.getElementById("action");
 let FPS = document.getElementById("FPS");
@@ -11,16 +12,21 @@ let home = document.getElementById("home");
 let footerPanier = document.getElementById("addpanier");
 let panierContainer = document.getElementById("panierContainer");
 let titlePanier = document.getElementById("titlePanier");
+let alert=document.getElementById('alert')
+let btnalert=document.getElementById('btnalert')
+let iconPanier=document.querySelector('.iconPanier')
+let homefooter=document.getElementById('homefooter')
 
 let listgames = [];
 
 function displayGame() {
+  galery.innerHTML=''
   let array = JSON.parse(localStorage.getItem("games"));
   if (Array.isArray(array)) {
     listgames = array;
   }
   localStorage.setItem("games", JSON.stringify(listgames));
-  console.log(localStorage.getItem("games"));
+
   for (let i = 0; i < games.length; i++) {
     galery.innerHTML += `
         <div id="card" class="card relative  rounded-2xl shadow w-64 h-96  mb-2 ">
@@ -39,29 +45,30 @@ function displayGame() {
         </div>
         </div>`;
     let iconPanier = document.querySelectorAll(".iconPanier");
-    // console.log(iconPanier)
-    // iconPanier.forEach(icon => {
+
     for (let i = 0; i < iconPanier.length; i++) {
       iconPanier[i].onclick = function () {
         console.log("clicked panier");
+          alert.style.display="block"
+
         listgames.push(games[i]);
 
         localStorage.setItem("games", JSON.stringify(listgames));
-        console.log();
 
-        // console.log(games[i].id);
-        // console.log(listgames);
       };
     }
-    // }
-    // )
+
   }
-  //   panier()
+ 
 }
 function panier() {
   let games = JSON.parse(localStorage.getItem("games")) || [];
-  displayGame();
+  
   console.log(games);
+  
+    galery.classList.add("hidden"); 
+  panierContainer.classList.remove("hidden");
+
   panierContainer.innerHTML = games.map(
     ({ image, category, title, price }) => `
              <div class="p-4 m-2 flex flex-col bg-white rounded-2xl border-black shadow-md md:flex-row md:gap-6">
@@ -91,6 +98,8 @@ function panier() {
        </div>
      </div>`,
   );
+  
+
 }
 
 displayGame();
@@ -104,7 +113,7 @@ function NOTfound() {
 }
 function search(value) {
   galery.innerHTML = "";
-  value = value.toLowerCase(); // met la valeur tapée en minuscules
+  value = value.toLowerCase(); 
   let found = false;
   for (let i = 0; i < games.length; i++) {
     if (games[i].title.toLowerCase().includes(value)) {
@@ -152,18 +161,45 @@ FPS.onclick = function () {
   FPScategory();
 };
 Panier.onclick = function () {
+
+
   main.style.display = "none";
   panier();
+
 };
+btnalert.onclick=function(){
+  alert.style.display="none"
+}
+
+
 footerPanier.onclick = function () {
+
+  panierContainer.classList.remove("hidden");
   main.style.display = "none";
   panier();
-  console.log("kjfr");
+
 };
 home.onclick = function () {
+
+    panierContainer.classList.add("hidden");
+  panierContainer.style.display = ""; 
+  galery.classList.remove("hidden");
   main.style.display = "flex";
-  // main.style
+  displayGame();
+
+
+ 
 };
+homefooter.onclick=function(){
+   console.log("click home foter");
+  panierContainer.classList.add("hidden");
+  panierContainer.style.display = ""; 
+  galery.classList.remove("hidden");
+  main.style.display = "flex";
+  displayGame();
+
+}
+
 function RPGcategory() {
   let RPG = document.getElementById("RPG");
 

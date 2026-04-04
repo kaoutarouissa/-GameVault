@@ -10,10 +10,10 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     />
     <title>GameVault</title>
-    <script src="./script.js" type="module"></script>
+    <!-- <script src="./script.js" type="module"></script> -->
   </head>
   <body class="md:bg-[#4949ff]">
-    <header class="items-center p-10 justify-between font-bold md:flex">
+    <header class="md:mb-4 md:bg-[#4949ff] items-center p-10 justify-between font-bold md:flex md:fixed md:top-0 md:left-0 md:right-0 md:z-50">
       <h1 class="text-2xl text-center text-[#4949ff] md:text-white">
         Explorez une nouvelle façon d'acheter vos jeux
       </h1>
@@ -43,13 +43,13 @@
     </header>
     <main
       id="main"
-      class="flex-col p-4 md:flex md:justify-center md:items-center md:flex-col items-center justify-center"
+      class="flex-col flex md:mt-40  p-4 md:flex md:justify-center md:items-center md:flex-col items-center justify-center"
     >
       <div
         id="container-input"
         class="flex items-center justify-center m-6 bg-[#EFE4E4] rounded-full border md:pl-4 md:w-150 md:bg-white"
       >
-        <img src="/images/search.png" class="w-5 h-5" />
+        <img src="images/search.png" class="w-5 h-5" />
         <input
           id="search"
           class="focus:outline-none rounded-full p-4"
@@ -93,21 +93,37 @@
         </button>
       </div>
 
-      <div
-        id="galery-card"
-        class="mt-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-items-center mb-20"
-      ></div>
+      
+      
     </main>
-    <div id="panierContainer" class="mb-[10px] pb-24 border-black bg-black">
+    <div
+      id="galery-card"
+      class=" mt-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-items-center mb-20"
+    ></div>
+    <div id="panierContainer" class="md:mt-40 md:m-[50px] mb-[10px] pb-24 border-black   hidden">
       </div>
+<!-- alert msg -->
+<div id="alert" class="fixed hidden flex inset-12   items-center justify-center">
+  <div class="bg-white border border-gray-300 shadow-lg rounded-lg p-6 text-center w-80">
+    <p class="text-lg font-semibold text-green-800">Succès</p>
+    <p class="text-black mt-2">Ajouter au panier avec succès</p>
+    
+    <button id="btnalert"
+    
+      class="mt-4 bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600"
+    >
+      OK
+    </button>
+  </div>
+</div>
 
 
-    </div>
+    
     <footer
       class="md:hidden bg-[#4949ff] flex justify-between p-6 rounded-t-2xl fixed bottom-0 right-0 left-0"
     >
       <i
-        id="home"
+        id="homefooter"
         class="fa-solid fa-house fa-2x hover:cursor-pointer"
         style="color: rgb(255, 255, 255)"
       ></i>
@@ -121,6 +137,8 @@
         class="fa-solid fa-user fa-2x hover:cursor-pointer"
         style="color: rgb(255, 255, 255)"
       ></i>
+          <script src="./script.js" type="module"></script>
+
     </footer>
   </body>
 </html>
