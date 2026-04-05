@@ -98,16 +98,18 @@ function panier() {
       )
       .join("") +
     `
-      <div class="md:mt-40 md:m-[50px] mb-[10px] pb-24 border-black">
-        <div class="flex justify-center mt-4">
-          <div>
-            <p>Total: <span class="text-green-400" id="totalAmount">$0.00</span></p>
-            <button id="validateOrder" class="cursor-pointer bg-[#4949ff] text-yellow-400 font-bold px-4 py-2 rounded-full">
-              Valider la commande
-            </button>
-          </div>
-        </div>
-      </div>
+    <div class="mt-6 mb-10 pb-24 border-black md:bg-white md:rounded md:p-4">
+  <div class="flex flex-col md:flex-row justify-center items-center m-6 p-4 gap-[10px] md:gap-6 bg-[#4949ff]md:bg-white rounded">
+    <div class="flex flex-col md:flex-row gap-6 md:gap-4 p-4 items-center">
+      <p class="font-bold text-center md:text-left">
+        Total: <span class="text-green-400 font-bold" id="totalAmount">$0.00</span>
+      </p>
+      <button id="validateOrder" class="cursor-pointer bg-white text-[#4949ff] font-bold p-4 rounded-full md:bg-[#4949ff] md:p-4 md:text-white  md:ml-4">
+        Valider la commande
+      </button>
+    </div>
+  </div>
+</div>
     `;
 
   let add = document.querySelectorAll(".add");
@@ -132,7 +134,7 @@ function panier() {
       let price = parseFloat(priceCalcule[i].textContent);
       let quantity = parseInt(quantityElement[i].textContent, 10);
       somme += price * quantity;
-      
+
     }
     return somme;
   }
