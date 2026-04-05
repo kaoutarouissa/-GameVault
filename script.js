@@ -63,121 +63,121 @@ function displayGame() {
 }
 function panier() {
   let games = JSON.parse(localStorage.getItem("games")) || [];
-  
-  console.log(games);
-  
-    galery.classList.add("hidden"); 
+
+  galery.classList.add("hidden");
   panierContainer.classList.remove("hidden");
 
-  panierContainer.innerHTML = games.map(
-    ({ image, category, title, price }) => `
-             <div class="p-4 m-2 flex flex-col bg-white rounded-2xl border-black shadow-md md:flex-row md:gap-6">
-       <img src="${image}" class="w-full h-60 md:w-40 md:h-60 rounded-xl object-cover">
-       <div class="flex flex-col justify-between flex-1 mt-4 md:mt-0">
-         <div class="font-bold flex flex-col gap-2 md:gap-4">
-           <p class="text-[#4949ff] text-lg md:text-xl">${title}</p>
-           <p class="text-gray-600">${category}</p>
-           <p class="pricecalcule text-green-400 font-semibold">${price}$</p>
-         </div>
-         <div class="flex flex-col gap-2 mt-4 md:mt-0">
-           <div class="flex gap-2 md:gap-4 items-center">
-             <button id="add" class="add cursor-pointer h-10 w-10 rounded-full bg-[#4949ff] text-white flex items-center justify-center">+</button>
-             <span id="quantity" class="font-bold px-2">1</span>
-             <button id="subtract" class="subtract cursor-pointer h-10 w-10 rounded-full bg-[#4949ff] text-white flex items-center justify-center">-</button>
-           </div>
-           <div class="flex justify-between items-center mt-2">
-             <p class=" font-bold">Total: <span class="Spantotalprice text-green-400">$</span></p>
-             <img class="delete w-10 h-10 cursor-pointer" src="./images/delete.png" alt="delete">
-           </div>
-         </div>
-        
-       </div>
-       
-     </div >
-     `,
-  );
-  let add=document.querySelectorAll(".add")
-  let quantityElement=document.querySelectorAll("#quantity")
-  let subtract=document.querySelectorAll(".subtract")
-  let deleteBtn=document.querySelectorAll(".delete")
-  let priceCalcule=document.querySelectorAll('.pricecalcule')
-  let Spantotalprice=document.querySelectorAll('.Spantotalprice')
-function totaleItemAdd(){
+  panierContainer.innerHTML =
+    games
+      .map(
+        ({ image, category, title, price }) => `
+          <div class="p-4 m-2 flex flex-col bg-white rounded-2xl border-black shadow-md md:flex-row md:gap-6">
+            <img src="${image}" class="w-full h-60 md:w-40 md:h-60 rounded-xl object-cover">
+            <div class="flex flex-col justify-between flex-1 mt-4 md:mt-0">
+              <div class="font-bold flex flex-col gap-2 md:gap-4">
+                <p class="text-[#4949ff] text-lg md:text-xl">${title}</p>
+                <p class="text-gray-600">${category}</p>
+                <p class="pricecalcule text-green-400 font-semibold">${price}</p>
+              </div>
 
-  for(let i=0;i<priceCalcule.length;i++){
-    let totalPrice=0
-    totalPrice += parseFloat(priceCalcule[i].textContent) * parseInt(quantityElement[i].textContent);
-    // priceCalcule[i].textContent = `${totalPrice}$`;
-    console.log(totalPrice);
-    Spantotalprice[i].textContent = `${totalPrice.toFixed(2)}$`;
+              <div class="flex flex-col gap-2 mt-4 md:mt-0">
+                <div class="flex gap-2 md:gap-4 items-center">
+                  <button class="add cursor-pointer h-10 w-10 rounded-full bg-[#4949ff] text-white flex items-center justify-center">+</button>
+                  <span class="quantity font-bold px-2">1</span>
+                  <button class="subtract cursor-pointer h-10 w-10 rounded-full bg-[#4949ff] text-white flex items-center justify-center">-</button>
+                </div>
 
+                <div class="flex justify-between items-center mt-2">
+                  <p class="font-bold">Total: <span class="Spantotalprice text-green-400">$0</span></p>
+                  <img class="delete w-10 h-10 cursor-pointer" src="./images/delete.png" alt="delete">
+                </div>
+              </div>
+            </div>
+          </div>
+        `
+      )
+      .join("") +
+    `
+      <div class="md:mt-40 md:m-[50px] mb-[10px] pb-24 border-black">
+        <div class="flex justify-center mt-4">
+          <div>
+            <p>Total: <span class="text-green-400" id="totalAmount">$0.00</span></p>
+            <button id="validateOrder" class="cursor-pointer bg-[#4949ff] text-yellow-400 font-bold px-4 py-2 rounded-full">
+              Valider la commande
+            </button>
+          </div>
+        </div>
+      </div>
+    `;
+
+  let add = document.querySelectorAll(".add");
+  let quantityElement = document.querySelectorAll(".quantity");
+  let subtract = document.querySelectorAll(".subtract");
+  let deleteBtn = document.querySelectorAll(".delete");
+  let priceCalcule = document.querySelectorAll(".pricecalcule");
+  let Spantotalprice = document.querySelectorAll(".Spantotalprice");
+  let totalAmountElement = document.getElementById("totalAmount");
+  let validateOrderButton = document.getElementById("validateOrder");
+
+  function updateLineTotal(i) {
+    let price = parseFloat(priceCalcule[i].textContent);
+    let quantity = parseInt(quantityElement[i].textContent, 10);
+    Spantotalprice[i].textContent = `${(price * quantity).toFixed(2)}$`;
   }
-}
-function totalItemMoin(){
-    for(let i=0;i<priceCalcule.length;i++){
-    let totalPrice=0
-    totalPrice += parseFloat(priceCalcule[i].textContent) - parseInt(quantityElement[i].textContent);
-    // priceCalcule[i].textContent = `${totalPrice}$`;
-    console.log(totalPrice);
-    Spantotalprice[i].textContent = `${totalPrice.toFixed(2)}$`;
 
+  function calculateTotal() {
+    let somme = 0;
+    for (let i = 0; i < priceCalcule.length; i++) {
+      let price = parseFloat(priceCalcule[i].textContent);
+      let quantity = parseInt(quantityElement[i].textContent, 10);
+      somme += price * quantity;
+    }
+    return somme;
   }
-}
-for (let i = 0; i < add.length; i++) {
-  add[i].onclick = function() {
-    totaleItemAdd()
-    let current = parseInt(quantityElement[i].textContent);
-    quantityElement[i].textContent = current + 1;
-  };
-}
+
+  function updateTotal() {
+    totalAmountElement.textContent = `$${calculateTotal().toFixed(2)}`;
+  }
+
+  for (let i = 0; i < priceCalcule.length; i++) {
+    updateLineTotal(i);
+  }
+  updateTotal();
+
+  for (let i = 0; i < add.length; i++) {
+    add[i].onclick = function () {
+      let current = parseInt(quantityElement[i].textContent, 10);
+      quantityElement[i].textContent = current + 1;
+      updateLineTotal(i);
+      updateTotal();
+    };
+  }
+
+  for (let i = 0; i < subtract.length; i++) {
+    subtract[i].onclick = function () {
+      let current = parseInt(quantityElement[i].textContent, 10);
+      if (current > 1) {
+        quantityElement[i].textContent = current - 1;
+        updateLineTotal(i);
+        updateTotal();
+      }
+    };
+  }
 
   for (let i = 0; i < deleteBtn.length; i++) {
-    deleteBtn[i].onclick = function() {
-     
+    deleteBtn[i].onclick = function () {
       let games = JSON.parse(localStorage.getItem("games")) || [];
       games.splice(i, 1);
       localStorage.setItem("games", JSON.stringify(games));
       panier();
     };
-    
-    }
+  }
 
-for (let i = 0; i < subtract.length; i++) {
-  subtract[i].onclick = function() {
-     totalItemMoin()
-    let current = parseInt(quantityElement[i].textContent);
-    if (current > 1) {
-      quantityElement[i].textContent = current - 1;
-    }
-  };
-}
-  panierContainer.insertAdjacentHTML('beforeend', '  <div id="panierContainer" class="md:mt-40 md:m-[50px] mb-[10px] pb-24 border-black"><div class="flex justify-center mt-4"><div><p>Total: <span class="text-green-400" id="totalAmount">$0</span></p><button id="validateOrder" class="cursor-pointer bg-[#4949ff] text-yellow-400 font-bold px-4 py-2 rounded-full">Valider la commande</button></div></div>');
-  let totalAmountElement = document.getElementById("totalAmount");
-  let validateOrderButton = document.getElementById("validateOrder");
-  validateOrderButton.onclick = function() {
-    // alert("Commande validée !");
+  validateOrderButton.onclick = function () {
     localStorage.removeItem("games");
     panier();
-  }
-  
-  function calculateTotal() {
-    let somme = 0;
-    let games = JSON.parse(localStorage.getItem("games")) || [];
-
-    for (let i = 0; i < games.length; i++) {
-          for(let i=0;quantityElement.length;i++){
-            let quantity = parseInt(quantityElement[i].textContent);
-            somme += games[i].price * quantity;
-          }
-
+  };
 }
-}
-calculateTotal();
-function updateTotal() {
-  let total = calculateTotal();
-  totalAmountElement.textContent = `$${total}`; 
-}
-updateTotal();}
 displayGame();
 
 function NOTfound() {
@@ -240,7 +240,6 @@ FPS.onclick = function () {
   FPScategory();
 };
 Panier.onclick = function () {
-
 
   main.style.display = "none";
   panier();
