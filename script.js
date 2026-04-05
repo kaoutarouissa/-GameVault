@@ -119,7 +119,7 @@ function panier() {
   let totalAmountElement = document.getElementById("totalAmount");
   let validateOrderButton = document.getElementById("validateOrder");
 
-  
+
   function updateLineTotal(i) {
     let price = parseFloat(priceCalcule[i].textContent);
     let quantity = parseInt(quantityElement[i].textContent, 10);
@@ -132,6 +132,7 @@ function panier() {
       let price = parseFloat(priceCalcule[i].textContent);
       let quantity = parseInt(quantityElement[i].textContent, 10);
       somme += price * quantity;
+      
     }
     return somme;
   }
