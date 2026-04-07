@@ -70,7 +70,7 @@ function panier() {
   panierContainer.innerHTML =
     games
       .map(
-        ({ image, category, title, price }) => `
+        ({ image, category, title, price }) => `<div><input class="bg-white" type=txt id="inputpromp" placeholder="promo code"><button id="applique">Applique</button></div>
           <div class="p-4 m-2 flex flex-col bg-white rounded-2xl border-black shadow-md md:flex-row md:gap-6">
             <img src="${image}" class="w-full h-60 md:w-40 md:h-60 rounded-xl object-cover">
             <div class="flex flex-col justify-between flex-1 mt-4 md:mt-0">
@@ -111,6 +111,18 @@ function panier() {
   </div>
 </div>
     `;
+    let inputpromp=document.getElementById('inputpromp').value
+    let applique=document.getElementById('applique')
+
+    applique.onclick=function(){
+    
+      if(inputpromp >=1 && inputpromp <= 100){
+        console.log("inputpromp")
+      }
+      else{
+        console.log("nombre invalid")
+      }
+    }
 
   let add = document.querySelectorAll(".add");
   let quantityElement = document.querySelectorAll(".quantity");
@@ -119,8 +131,7 @@ function panier() {
   let priceCalcule = document.querySelectorAll(".pricecalcule");
   let Spantotalprice = document.querySelectorAll(".Spantotalprice");
   let totalAmountElement = document.getElementById("totalAmount");
-  let validateOrderButton = document.getElementById("validateOrder");
-
+  let validateOrderBtn = document.getElementById("validateOrder");
 
   function updateLineTotal(i) {
     let price = parseFloat(priceCalcule[i].textContent);
@@ -147,13 +158,15 @@ function panier() {
     updateLineTotal(i);
   }
   updateTotal();
-
   for (let i = 0; i < add.length; i++) {
     add[i].onclick = function () {
       let current = parseInt(quantityElement[i].textContent, 10);
       quantityElement[i].textContent = current + 1;
+      let quantity = JSON.parse(localStorage.getItem("quantityElement"))
       updateLineTotal(i);
       updateTotal();
+      
+      localStorage.setItem("quantity",JSON.stringify(listgames))
     };
   }
 
@@ -177,7 +190,7 @@ function panier() {
     };
   }
 
-  validateOrderButton.onclick = function () {
+  validateOrderBtn.onclick = function () {
     localStorage.removeItem("games");
     panier();
   };
